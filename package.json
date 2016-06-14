@@ -2,7 +2,7 @@
   "name": "all-your-base",
   "version": "1.0.0",
   "description": "Numbers in binary, octal and hexadecimal.",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "test": "mocha"
   },
