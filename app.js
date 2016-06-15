@@ -1,7 +1,7 @@
-var fs = require('fs');
-var index = fs.readFileSync('./public/index.html');
+var express = require('express');
 
-module.exports = function (req, res) {
-  res.writeHead(200, {'Content-Type': 'text/html'});
-  res.end(index);
-};
+app = express();
+
+app.use(express.static('public'));
+
+module.exports = app;
