@@ -16,7 +16,7 @@ AllYourBase.view = (function(){
 
   function attachClickListener(base, inElement, outElement){
     outElement.onclick = function(){
-      C.markActiveInput(base);
+      C.setActiveInput(base);
       closeAllInputs();
       swapVisibility(outElement, inElement);
     }

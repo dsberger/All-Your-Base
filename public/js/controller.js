@@ -14,12 +14,12 @@ AllYourBase.controller = (function(M, V){
     }, 100);
   };
 
-  function markActiveInput(base){
-    M.markActiveInput(base);
+  function setActiveInput(base){
+    M.activeInput.set(base);
   }
 
   function clearActiveInput(){
-    M.clearActiveInput();
+    M.activeInput.clear();
   };
 
   function init(){
@@ -30,7 +30,7 @@ AllYourBase.controller = (function(M, V){
   return {
     init: init,
     clearActiveInput: clearActiveInput,
-    markActiveInput: markActiveInput
+    setActiveInput: setActiveInput
   };
 
 })(AllYourBase.model, AllYourBase.view);

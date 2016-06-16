@@ -1,61 +1,47 @@
-var AllYourBase = AllYourBase || {};
+var Model = function(){
 
-AllYourBase.model = (function(){
+  var _activeField;
 
-  var BASES = {
-    bin: 2,
-    oct: 8,
-    dec: 10,
-    hex: 16
+  var _baseReference = {
+    'bin': 2,
+    'oct': 8,
+    'dec': 10,
+    'hex': 16
   };
 
-  var number = 16;
+  var _value = 16;
 
-  var activeInput = undefined;
+  this.getUpdate = function() {
 
-  function setActiveInput(base) {
-    activeInput = base;
-  };
+    var output = {}
 
-  function getActiveInput(){
-    return activeInput;
-  };
-
-  function clearActiveInput(){
-    activeInput = undefined;
-  };
-
-  function isInputActive(){
-    return activeInput !== undefined;
-  };
-
-  function getBases(){
-    return Object.keys(BASES);
-  }
-
-  function setNumber(newNumber){
-    number = newNumber;
-  };
-
-  function getUpdateHash(){
-    var output = {};
-
-    for (base in BASES) {
-      if(activeInput !== base){
-        output[base] = number.toString(BASES[base]);
+    for(base in _baseReference){
+      if(base != _activeField){
+        output[base] = _value.toString(_baseReference[base]);
       }
     };
 
     return output;
   };
 
-  return {
-    setNumber: setNumber,
-    getUpdateHash: getUpdateHash,
-    markActiveInput: markActiveInput,
-    clearActiveInput: clearActiveInput,
-    inputIsActive: inputIsActive,
-    getBases: getBases
+  this.setNumber = function(number) {
+    _value = number;
   };
 
-})();
+  this.getActiveField = function() {
+    return _activeField;
+  };
+
+  this.setActiveField = function(base) {
+    _activeField = base;
+  };
+
+  this.clearActiveField = function() {
+    _activeField = undefined;
+  };
+
+  this.hasActiveField = function() {
+    return _activeField !== undefined;
+  };
+
+};
