@@ -9,8 +9,8 @@ vm.runInThisContext(code);
 
 describe('Model', function() {
 
-  context('at initialization', function() {
-    describe('#getUpdate', function(){
+  describe('#getUpdate', function(){
+    context('at initialization', function(){
       it('should output a hash with all four bases representing sixteen', function(){
 
         var model = new Model;
@@ -26,24 +26,7 @@ describe('Model', function() {
       });
     });
 
-    describe('#getActiveField', function(){
-      it('should be undefined', function(){
-        var model = new Model;
-        assert.equal(undefined, model.getActiveField());
-      });
-    });
-
-    describe('#hasActiveField', function(){
-      it('should return true', function(){
-        var model = new Model;
-        assert.equal(false, model.hasActiveField());
-      });
-    });
-  });
-
-  context('with a new number', function(){
-    describe('#getUpdate', function(){
-
+    context('with an updated number', function(){
       it('should output a different hash when the number has been updated to eight', function(){
 
         var model = new Model;
@@ -76,29 +59,7 @@ describe('Model', function() {
 
     });
 
-  });
-
-  context('with an updated active field', function(){
-    describe('#getActiveField', function(){
-      it('should return the set field', function(){
-
-        var model = new Model;
-        model.setActiveField('bin');
-
-        assert.equal('bin', model.getActiveField());
-      });
-    });
-
-    describe('#hasActiveField', function(){
-      it('should return true', function(){
-        var model = new Model;
-        model.setActiveField('bin');
-
-        assert.equal(true, model.hasActiveField());
-      });
-    });
-
-    describe('#getUpdate', function(){
+    context('with an updated active field', function(){
       it('should exclude the active field', function(){
         var model = new Model;
         model.setActiveField('bin');
@@ -113,46 +74,79 @@ describe('Model', function() {
       });
     });
 
-    context('and then a cleared field', function(){
-      describe('#getUpdate', function(){
-        it('should output a hash with all four bases representing sixteen', function(){
+    context('with an updated then cleared active field', function(){
+      it('should output a hash with all four bases representing sixteen', function(){
 
-          var model = new Model;
-          model.setActiveField('bin');
-          model.clearActiveField();
+        var model = new Model;
+        model.setActiveField('bin');
+        model.clearActiveField();
 
-          var initialUpdate = {
-            'bin': '10000',
-            'oct': '20',
-            'dec': '16',
-            'hex': '10'
-          };
+        var initialUpdate = {
+          'bin': '10000',
+          'oct': '20',
+          'dec': '16',
+          'hex': '10'
+        };
 
-          assert.deepEqual(initialUpdate, model.getUpdate());
-        });
+        assert.deepEqual(initialUpdate, model.getUpdate());
       });
-
-      describe('#getActiveField', function(){
-        it('should be undefined', function(){
-          var model = new Model;
-          model.setActiveField('bin');
-          model.clearActiveField();
-
-          assert.equal(undefined, model.getActiveField());
-        });
-      });
-
-      describe('#hasActiveField', function(){
-        it('should return true', function(){
-          var model = new Model;
-          model.setActiveField('bin');
-          model.clearActiveField();
-
-          assert.equal(false, model.hasActiveField());
-        });
-      });
-
     });
   });
 
+  describe('#getActiveField', function() {
+    context('at initialization', function(){
+      it('should be undefined', function(){
+        var model = new Model;
+        assert.equal(undefined, model.getActiveField());
+      });
+    });
+
+    context('with an updated active field', function(){
+      it('should return the set field', function(){
+
+        var model = new Model;
+        model.setActiveField('bin');
+
+        assert.equal('bin', model.getActiveField());
+      });
+    });
+
+    context('with an updated then cleared active field', function(){
+      it('should be undefined', function(){
+        var model = new Model;
+        model.setActiveField('bin');
+        model.clearActiveField();
+
+        assert.equal(undefined, model.getActiveField());
+      });
+    });
+  });
+
+  describe('#hasActiveField', function() {
+    context('at initialization', function(){
+      it('should return true', function(){
+        var model = new Model;
+        assert.equal(false, model.hasActiveField());
+      });
+    });
+
+    context('with an updated active field', function(){
+      it('should return true', function(){
+        var model = new Model;
+        model.setActiveField('bin');
+
+        assert.equal(true, model.hasActiveField());
+      });
+    });
+
+    context('with an updated then cleared active field', function(){
+      it('should return true', function(){
+        var model = new Model;
+        model.setActiveField('bin');
+        model.clearActiveField();
+
+        assert.equal(false, model.hasActiveField());
+      });
+    });
+  });
 });
