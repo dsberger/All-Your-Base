@@ -3,7 +3,18 @@
   <head>
     <title>All Your Base</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-    <script src="/js/allYourBase.js"></script>
+    <link href="/css/styles.css" rel="stylesheet">
+
+    <script src="/js/model.js"></script>
+    <script src="/js/view.js"></script>
+    <script src="/js/controller.js"></script>
+
+    <script>
+      window.onload = function(){
+        AllYourBase.controller.init();
+      };
+    </script>
+
   </head>
   <body>
     <div class="container">
@@ -16,19 +27,23 @@
       <div class="row">
         <div class="col-md-3">
           <h3 class="text-center">Binary</h3>
-          <span class="number-output" id="bin"></span>
+          <span class="number-output" id="bin-output"></span>
+          <input class="number-input" id="bin-input">
         </div>
         <div class="col-md-3">
           <h3 class="text-center">Octal</h3>
-          <span class="number-output" id="oct"></span>
+          <span class="number-output" id="oct-output"></span>
+          <input class="number-input" id="oct-input">
         </div>
         <div class="col-md-3">
           <h3 class="text-center">Decimal</h3>
-          <span class="number-output" id="dec"></span>
+          <span class="number-output" id="dec-output"></span>
+          <input class="number-input" id="dec-input">
         </div>
         <div class="col-md-3">
           <h3 class="text-center">Hexadecimal</h3>
-          <span class="number-output" id="hex"></span>
+          <span class="number-output" id="hex-output"></span>
+          <input class="number-input" id="hex-input">
         </div>
       </div>
     </div>
