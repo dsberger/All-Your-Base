@@ -1,36 +1,27 @@
-var AllYourBase = AllYourBase || {};
-
-AllYourBase.controller = (function(M, V){
+var Controller = function(M, V){
 
   function updateSpans(){
-    V.updateFieldValues(M.getUpdateHash());
+    V.updateFieldValues(M.getUpdate());
   };
 
-  function dirtyLoop(){
-    setInterval(function(){
-      if(M.inputIsActive){
-        updateSpans();
-      }
-    }, 100);
+  // function dirtyLoop(){
+  //   setInterval(function(){
+  //     if(M.inputIsActive){
+  //       updateSpans();
+  //     }
+  //   }, 100);
+  // };
+
+  this.setActiveInput = function(base){
+    M.setActiveField(base);
   };
 
-  function setActiveInput(base){
-    M.activeInput.set(base);
-  }
-
-  function clearActiveInput(){
-    M.activeInput.clear();
+  this.clearActiveInput = function(){
+    M.clearActiveField();
   };
 
-  function init(){
-    V.init(this, M.getBases());
+  this.init = function(){
+    V.init(this, M.baseList());
     updateSpans();
   };
-
-  return {
-    init: init,
-    clearActiveInput: clearActiveInput,
-    setActiveInput: setActiveInput
-  };
-
-})(AllYourBase.model, AllYourBase.view);
+};

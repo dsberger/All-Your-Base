@@ -1,6 +1,4 @@
-var AllYourBase = AllYourBase || {};
-
-AllYourBase.view = (function(){
+var View = function(){
 
   var bases, C;
 
@@ -40,14 +38,14 @@ AllYourBase.view = (function(){
 
   };
 
-  function updateFieldValues(hash){
+  this.updateFieldValues = function(hash){
     for(base in hash){
       element(base, "output").innerText = hash[base];
       element(base, "input").value = hash[base];
     }
   };
 
-  function init(controller, modelBases){
+  this.init = function(controller, modelBases){
 
     C = controller
     bases = modelBases
@@ -60,10 +58,4 @@ AllYourBase.view = (function(){
       attachEnterListener(base, inElement, outElement);
     });
   };
-
-  return {
-    init: init,
-    updateFieldValues: updateFieldValues
-  };
-
-})();
+};

@@ -149,4 +149,14 @@ describe('Model', function() {
       });
     });
   });
+
+  describe('#baseList', function(){
+    it('should return an array of strings', function(){
+      var model = new Model;
+
+      var listOfBases = ['bin', 'oct', 'dec', 'hex'];
+
+      assert.deepEqual(listOfBases, model.baseList());
+    });
+  });
 });

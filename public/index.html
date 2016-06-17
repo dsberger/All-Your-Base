@@ -10,6 +10,11 @@
     <script src="/js/controller.js"></script>
 
     <script>
+      var AllYourBase = AllYourBase || {};
+      AllYourBase.model = new Model;
+      AllYourBase.view = new View;
+      AllYourBase.controller = new Controller(AllYourBase.model, AllYourBase.view);
+
       window.onload = function(){
         AllYourBase.controller.init();
       };

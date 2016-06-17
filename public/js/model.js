@@ -44,4 +44,8 @@ var Model = function(){
     return _activeField !== undefined;
   };
 
+  this.baseList = function() {
+    return Object.keys(_baseReference);
+  };
+
 };
