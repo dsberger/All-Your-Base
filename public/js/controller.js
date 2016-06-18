@@ -1,7 +1,6 @@
-var Controller = function(M, V){
-
-  function updateSpans(){
-    V.updateFieldValues(M.getUpdate());
+var Controller = function (M, V) {
+  function updateSpans () {
+    V.updateFieldValues(M.getUpdate())
   };
 
   // function dirtyLoop(){
@@ -12,16 +11,16 @@ var Controller = function(M, V){
   //   }, 100);
   // };
 
-  this.setActiveInput = function(base){
-    M.setActiveField(base);
-  };
+  this.setActiveInput = function (base) {
+    M.setActiveField(base)
+  }
 
-  this.clearActiveInput = function(){
-    M.clearActiveField();
-  };
+  this.clearActiveInput = function () {
+    M.clearActiveField()
+  }
 
-  this.init = function(){
-    V.init(this, M.baseList());
-    updateSpans();
-  };
-};
+  this.init = function () {
+    V.init(this, M.baseList())
+    updateSpans()
+  }
+}
