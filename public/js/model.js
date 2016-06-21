@@ -1,5 +1,5 @@
 var Model = function () {
-  var _activeField
+  var _activeInput = false
 
   var _baseReference = {
     'bin': 2,
@@ -14,32 +14,26 @@ var Model = function () {
     var output = {}
 
     for (var base in _baseReference) {
-      if (base !== _activeField) {
-        output[base] = _value.toString(_baseReference[base])
-      }
+      output[base] = _value.toString(_baseReference[base])
     };
 
     return output
   }
 
-  this.setNumber = function (number) {
-    _value = number
+  this.setNumber = function (numberStr, baseName) {
+    _value = parseInt(numberStr, _baseReference[baseName])
   }
 
-  this.getActiveField = function () {
-    return _activeField
+  this.setActiveInput = function () {
+    _activeInput = true
   }
 
-  this.setActiveField = function (base) {
-    _activeField = base
+  this.clearActiveInput = function () {
+    _activeInput = false
   }
 
-  this.clearActiveField = function () {
-    _activeField = undefined
-  }
-
-  this.hasActiveField = function () {
-    return _activeField !== undefined
+  this.hasActiveInput = function () {
+    return _activeInput
   }
 
   this.baseList = function () {

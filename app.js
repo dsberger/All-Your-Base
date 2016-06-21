@@ -1,7 +1,7 @@
-var express = require('express');
+var express = require('express')
 
-app = express();
+var app = express()
 
-app.use(express.static('public'));
+app.use(express.static('public'))
 
-module.exports = app;
+module.exports = app

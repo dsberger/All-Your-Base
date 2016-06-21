@@ -3,20 +3,25 @@ var Controller = function (M, V) {
     V.updateFieldValues(M.getUpdate())
   };
 
-  // function dirtyLoop(){
-  //   setInterval(function(){
-  //     if(M.inputIsActive){
-  //       updateSpans();
-  //     }
-  //   }, 100);
-  // };
+  function dirtyLoop () {
+    setInterval(function () {
+      if (M.hasActiveInput()) {
+        updateSpans()
+        var activeInput = V.getActiveInputElement()
+        var base = activeInput.id.slice(0, 3)
+        var number = activeInput.value
+        M.setNumber(number, base)
+      }
+    }, 100)
+  };
 
-  this.setActiveInput = function (base) {
-    M.setActiveField(base)
+  this.setActiveInput = function () {
+    M.setActiveInput()
+    dirtyLoop()
   }
 
   this.clearActiveInput = function () {
-    M.clearActiveField()
+    M.clearActiveInput()
   }
 
   this.init = function () {

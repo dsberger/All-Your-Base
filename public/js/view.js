@@ -13,8 +13,9 @@ var View = function () {
 
   function attachClickListener (base, inElement, outElement) {
     outElement.onclick = function () {
-      C.setActiveInput(base)
+      C.setActiveInput(inElement)
       closeAllInputs()
+      inElement.classList.add('active')
       swapVisibility(outElement, inElement)
     }
   }
@@ -22,8 +23,8 @@ var View = function () {
   function attachEnterListener (base, inElement, outElement) {
     inElement.onkeydown = function (e) {
       if (e.keyCode === 13) {
+        closeAllInputs()
         C.clearActiveInput()
-        swapVisibility(inElement, outElement)
       }
     }
   }
@@ -32,6 +33,7 @@ var View = function () {
     bases.forEach(function (base) {
       var inElement = element(base, 'input')
       var outElement = element(base, 'output')
+      inElement.classList.remove('active')
       swapVisibility(inElement, outElement)
     })
   }
@@ -39,8 +41,22 @@ var View = function () {
   this.updateFieldValues = function (hash) {
     for (var base in hash) {
       element(base, 'output').innerText = hash[base]
-      element(base, 'input').value = hash[base]
+      var inElement = element(base, 'input')
+      if (!inElement.classList.contains('active')) {
+        inElement.value = hash[base]
+      }
     }
+  }
+
+  this.getActiveInputElement = function () {
+    var inputField
+    bases.forEach(function (base) {
+      var tempField = element(base, 'input')
+      if (tempField.classList.contains('active')) {
+        inputField = tempField
+      }
+    })
+    return inputField
   }
 
   this.init = function (controller, modelBases) {
