@@ -52,7 +52,7 @@ describe('Model', function () {
         assert.deepEqual(updateHash, model.getUpdate())
       })
 
-      it('should output a different hash when the number has been update to 100 in binary', function() {
+      it('should output a different hash when the number has been update to 100 in binary', function () {
         var model = new (Model)
         model.setNumber('100', 'bin')
 
@@ -103,6 +103,38 @@ describe('Model', function () {
       var listOfBases = ['bin', 'oct', 'dec', 'hex']
 
       assert.deepEqual(listOfBases, model.baseList())
+    })
+  })
+
+  describe('#incrementValue', function () {
+    it('should add one to the internal value', function () {
+      var model = new (Model)
+      model.incrementValue()
+
+      var updateHash = {
+        'bin': '10001',
+        'oct': '21',
+        'dec': '17',
+        'hex': '11'
+      }
+
+      assert.deepEqual(updateHash, model.getUpdate())
+    })
+  })
+
+  describe('#decrementValue', function () {
+    it('should subtract one from the internal value', function () {
+      var model = new (Model)
+      model.decrementValue()
+
+      var updateHash = {
+        'bin': '1111',
+        'oct': '17',
+        'dec': '15',
+        'hex': 'f'
+      }
+
+      assert.deepEqual(updateHash, model.getUpdate())
     })
   })
 })

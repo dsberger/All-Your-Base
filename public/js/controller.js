@@ -15,6 +15,16 @@ var Controller = function (M, V) {
     }, 100)
   };
 
+  this.incrementValue = function () {
+    M.incrementValue()
+    updateSpans()
+  }
+
+  this.decrementValue = function () {
+    M.decrementValue()
+    updateSpans()
+  }
+
   this.setActiveInput = function () {
     M.setActiveInput()
     dirtyLoop()

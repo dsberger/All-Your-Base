@@ -39,4 +39,12 @@ var Model = function () {
   this.baseList = function () {
     return Object.keys(_baseReference)
   }
+
+  this.incrementValue = function () {
+    _value++
+  }
+
+  this.decrementValue = function () {
+    _value--
+  }
 }

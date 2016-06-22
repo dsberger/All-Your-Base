@@ -8,15 +8,15 @@ var View = function () {
   function swapVisibility (turnOff, turnOn) {
     turnOff.style.display = 'none'
     turnOn.style.display = 'inline'
-    turnOn.focus()
   }
 
   function attachClickListener (base, inElement, outElement) {
     outElement.onclick = function () {
-      C.setActiveInput(inElement)
       closeAllInputs()
+      C.setActiveInput(inElement)
       inElement.classList.add('active')
       swapVisibility(outElement, inElement)
+      inElement.focus()
     }
   }
 
@@ -24,12 +24,26 @@ var View = function () {
     inElement.onkeydown = function (e) {
       if (e.keyCode === 13) {
         closeAllInputs()
-        C.clearActiveInput()
       }
     }
   }
 
+  function attachIncrementListener () {
+    document.getElementById('increment').onclick = function () {
+      closeAllInputs()
+      C.incrementValue()
+    }
+  }
+
+  function attachDecrementListener () {
+    document.getElementById('decrement').onclick = function () {
+      closeAllInputs()
+      C.decrementValue()
+    }
+  }
+
   function closeAllInputs () {
+    C.clearActiveInput()
     bases.forEach(function (base) {
       var inElement = element(base, 'input')
       var outElement = element(base, 'output')
@@ -70,5 +84,8 @@ var View = function () {
       attachClickListener(base, inElement, outElement)
       attachEnterListener(base, inElement, outElement)
     })
+
+    attachIncrementListener()
+    attachDecrementListener()
   }
 }
